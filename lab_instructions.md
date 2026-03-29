@@ -104,7 +104,7 @@ So for example, suppose we wanted to find the area under the curve of $f(x) = x^
 
 The formula for reimann sum is:
 
-\[ \sum_{i = 1}^n f(x_i^*) \cdot \Delta x_i \]
+$$ \sum_{i = 1}^n f(x_i^*) \cdot \Delta x_i $$
 
 Where $x_i^*$ is the type of reimann sum. Since we are doing left, we have $x_i^* = x_{i - 1}$.
 
@@ -126,15 +126,15 @@ We get the following figure:
 Notice that its not a very good approximation. To get a more accurate result, you would create more subdivisions!
 
 If we decided for $n = 10$:
-\[\Delta x = \dfrac{2 - 0}{10} = \dfrac{1}{5} = 0.2\]
+$$\Delta x = \dfrac{2 - 0}{10} = \dfrac{1}{5} = 0.2$$
 
-\[x = [0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.2, 1.4, 1.6, 1.8, 2.0]\]
+$$x = [0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.2, 1.4, 1.6, 1.8, 2.0]$$
 
 where $x_0 = a = 0$ and $x_{10} = b = 2$
 
-\[
+$$
 \sum_{i = 1}^{10} f(x_i^*) \cdot \Delta x = \Delta x \cdot \sum_{i = 1}^{10} f(x_{i - 1}) = \Delta x \cdot \Big(f(x_0) + f(x_1) + \cdots + f(x_9)\Big) = \dfrac{1}{5} \Big(f(0) + f(0.2) + \cdots + f(1.8)\Big) = \dfrac{1}{5} \Big(0 + 0.04 + \cdots + 3.24\Big) = \dfrac{1}{5} (11.4) = 2.28
-\]
+$$
 
 Below is the figure for the following result:
 
@@ -156,11 +156,11 @@ Eventually, if we do a big number like $n = 10000$, it should emcompass the enti
 
 Note that this is an approximation such that: 
 
-\[ \sum_{i = 1}^n f(x_i^*) \cdot \Delta x_i \approx \int_a^b f(x) dx = F(b) - F(a)\]
+$$ \sum_{i = 1}^n f(x_i^*) \cdot \Delta x_i \approx \int_a^b f(x) dx = F(b) - F(a)$$
 
 If we do the actual integral we have the following:
 
-\[ \int_0^2 x^2dx = \dfrac{x^3}{3} \Big|_0^2 = \dfrac{2^3}{3} - \dfrac{0^3}{3} = \dfrac{8}{3} \approx 2.667\]. 
+$$ \int_0^2 x^2dx = \dfrac{x^3}{3} \Big|_0^2 = \dfrac{2^3}{3} - \dfrac{0^3}{3} = \dfrac{8}{3} \approx 2.667$$ 
 
 With the main idea down, your task is to create a program called `numerical_integration.py` that does the following:
 
