@@ -104,12 +104,14 @@ So for example, suppose we wanted to find the area under the curve of $f(x) = x^
 
 The formula for reimann sum is:
 
-\[ \sum_{i = 1}^n f(x_i^*) \cdot \Delta x_i\]
+\[ \sum_{i = 1}^n f(x_i^*) \cdot \Delta x_i \]
 
 Where $x_i^*$ is the type of reimann sum. Since we are doing left, we have $x_i^* = x_{i - 1}$.
 
 If we decided to create 4 subdivisions (4 rectangles) we have the following:
+
 \[\Delta x_i = \dfrac{2 - 0}{4} = \dfrac{1}{2}, x = [0, 0.5, 1, 1.5]\]
+
 $$\begin{align*} \sum_{i = 1}^4 & f(x_i^*) \cdot \Delta x_i \\ &= \Delta x_i \cdot \sum_{i = 1}^4 f(x_{i - 1}) \\ &= \Delta x_i \cdot \Big(f(x_0) + f(x_1) + f(x_2) + f(x_3)\Big) \\ &= \dfrac{1}{2} \Big(f(0) + f(0.5) + f(1) + f(1.5) \Big) \\ &= \dfrac{1}{2} \Big(0^2 + 0.5^2 + 1^2 + 1.5^2 \Big) \\ &= \dfrac{1}{2} \Big(0 + 0.25 + 1 + 2.25 \Big) \\ &= \dfrac{1}{2}(3.5) = 1.75
 \end{align*}$$
 
@@ -120,11 +122,13 @@ Notice that its not a very good approximation. To get a more accurate result, yo
 
 If we decided for $n = 10$:
 \[\Delta x = \dfrac{2 - 0}{10} = \dfrac{1}{5} = 0.2\]
+
 \[x = [0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.2, 1.4, 1.6, 1.8, 2.0]\]
+
 where $x_0 = a = 0$ and $x_{10} = b = 2$
 
-$$\begin{align*} \sum_{i = 1}^{10} & f(x_i^*) \cdot \Delta x \\ &= \Delta x \cdot \sum_{i = 1}^{10} f(x_{i - 1}) \\ &= \Delta x \cdot \Big(f(x_0) + f(x_1) + f(x_2) + f(x_3) + f(x_4) + f(x_5) + f(x_6) + f(x_7) + f(x_8) + f(x_9)\Big) \\ &= \dfrac{1}{5} \Big(f(0) + f(0.2) + f(0.4) + f(0.6) + f(0.8) + f(1.0) + f(1.2) + f(1.4) + f(1.6) + f(1.8) \Big) \\ &= \dfrac{1}{5} \Big(0^2 + 0.2^2 + 0.4^2 + 0.6^2 + 0.8^2 + 1.0^2 + 1.2^2 + 1.4^2 + 1.6^2 + 1.8^2 \Big) \\ &= \dfrac{1}{5} \Big(0 + 0.04 + 0.16 + 0.36 + 0.64 + 1.00 + 1.44 + 1.96 + 2.56 + 3.24 \Big) \\ &= \dfrac{1}{5} (11.4) = 2.28
-\end{align*}$$
+\begin{align*} \sum_{i = 1}^{10} & f(x_i^*) \cdot \Delta x \\ &= \Delta x \cdot \sum_{i = 1}^{10} f(x_{i - 1}) \\ &= \Delta x \cdot \Big(f(x_0) + f(x_1) + f(x_2) + f(x_3) + f(x_4) + f(x_5) + f(x_6) + f(x_7) + f(x_8) + f(x_9)\Big) \\ &= \dfrac{1}{5} \Big(f(0) + f(0.2) + f(0.4) + f(0.6) + f(0.8) + f(1.0) + f(1.2) + f(1.4) + f(1.6) + f(1.8) \Big) \\ &= \dfrac{1}{5} \Big(0^2 + 0.2^2 + 0.4^2 + 0.6^2 + 0.8^2 + 1.0^2 + 1.2^2 + 1.4^2 + 1.6^2 + 1.8^2 \Big) \\ &= \dfrac{1}{5} \Big(0 + 0.04 + 0.16 + 0.36 + 0.64 + 1.00 + 1.44 + 1.96 + 2.56 + 3.24 \Big) \\ &= \dfrac{1}{5} (11.4) = 2.28
+\end{align*}
 
 Below is the figure for the following result:
 ![ten_sub_integration](Figures/numerical_integration2.png)
@@ -142,6 +146,7 @@ Eventually, if we do a big number like $n = 10000$, it should emcompass the enti
 ![hundred_sub_integration](Figures/numerical_integration4.png)
 
 Note that this is an approximation such that: 
+
 \[ \sum_{i = 1}^n f(x_i^*) \cdot \Delta x_i \approx \int_a^b f(x) dx = F(b) - F(a)\]
 
 If we do the actual integral we have the following:
@@ -156,7 +161,7 @@ With the main idea down, your task is to create a program called `numerical_inte
 - Calculate $\Delta x = b - a / n$
 - Create a list of left endpoints: x\_left $= [a, a + \Delta x, a + 2\Delta x, ...]$
 - Create a list of y-values (the height) by evaluating `f(x)` at each endpoint
-- Create a list of areas of each rectangle by evaluating $\Delta x \cdot \text{y\_values}[i]$ 
+- Create a list of areas of each rectangle by evaluating $\Delta x \cdot $ y_values$[i]$
 - Return the approximate area by summing all the rectangles
 
 Example Output: 
