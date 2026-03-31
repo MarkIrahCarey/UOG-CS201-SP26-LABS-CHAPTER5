@@ -34,7 +34,7 @@ mood_to_songs = {
 
 Note: You need a minimum of 3 moods, each with 5 songs to randomly choose. You are not limited to the amount of songs or moods, don't go overboard though.
 
-Recommended functions/operations: `random.sample()`
+Recommended functions/operations: `random.sample()`, `for key in mood_to_songs.keys():`
 
 ## Lab5b: Destroying a pyramid!
 
@@ -326,6 +326,43 @@ if __name__ == "__main__":
     print("-"*50)
 ```
 
+### Lab 5d Hints:
+---
+
+To create a list of your left end points, the general sequence is $[a, a + \Delta x, a + 2\Delta x, ...]$
+
+The number of left end points is the number of subdivisions and how far apart is based on $\Delta x$.
+
+Assuming you already calculated $\Delta x$ and stored it in some variable, creating the left end points is as follows:
+```python
+left_end_points = []
+for i in range(sub_divisions):
+  left_end_points.append(lower_bound + (i * name_of_delta_x))
+```
+
+So from our previous example, if we did $x^2$, from 0 to 2. We have $\Delta x = \dfrac{1}{2}$, then on our for loop we have the following:
+
+$[0 + 0 \cdot \frac{1}{2}, 0 + 1\cdot \frac{1}{2}, 0 + 2 \cdot \frac{1}{2}, 0 + 3 \cdot \frac{1}{2}]$ = $[0, 0.5, 1, 1.5]$
+
+Then you can use your list of left_end_points to calculate the y_points (height), then use the list of y_points and multiply it by $\Delta x$ to get the area of each rectangle.
+
+---
+
+Note that `f` parameter for the function is using lambda. The idea is that we are treating `f` as a mathematical function.
+
+For example:
+```python
+my_function = lambda x : eval("x + 3")
+```
+
+To use this function, we do the following:
+```python
+print(my_function(3)) # 3 + 3 = 6
+```
+
+So to evaluate your function, you can do `f(x_value)` in your function (this is helpful for getting our y points).
+
+---
 ## Lab 5e: Typhoon Tracker!
 
 You're a meteorologist working at the National Weather Service in Guam. Your job is to check if there's enough ocean energy for a typhoon to form near Guam. If there is, you need to warn the island!
@@ -345,7 +382,7 @@ Below is the ranges of GPI:
 | **81-90** | Very High | 🟣 Purple | Extremely favorable | Issue alert |
 | **91-100** | Extreme | ⚫ Black | Almost certain formation | Emergency notification |
 
-Given the following GPI 2D list, your job is to print the grid of colors for the GPI. Note that Guam is in column 4, row 4, so instead of the color, please put 🏝️ instead.
+Given the following GPI 2D list, your job is to print the grid of colors for the GPI. Note that Guam is in column 4, row 5, so instead of the color, please put 🏝️ instead.
 
 ```
 gpi_grid = [
@@ -377,4 +414,46 @@ When mapping the colors, you should get the following:
  23.3N  🟢   🟡   🟠   🟤   🔴   🔴   🔴   🔴   🟤   🟠
  26.7N  🟢   🟢   🟡   🟠   🟤   🔴   🔴   🔴   🟤   🟠
    30N  🟢   🟢   🟢   🟡   🟠   🟠   🟠   🟠   🟡   🟡
+```
+
+Recommended functions/methods: 
+There are many ways to do this.
+
+You can create a function that takes in the GPI number and returns the color. 
+
+```python
+def gpi_color(gpi_num):
+  color = "" # change this to the correct color
+  # do something with gpi_num to get the color
+
+  return color # return the color
+```
+
+For traversing through the list, you can do the following:
+
+- Access each row, then loop through the row and find the color. Store this in a temporary list. Once you go through the row, append into an empty list that holds all the colors.
+
+```
+_2D_List_colors = []
+for row in gpi_grid:
+  # create a temporary list
+  temp_row = []
+  # do something with row, store color using temp_row.append()
+    .
+    .
+    .
+  # then append the temp_row into _2D_List_colors
+  _2D_List_colors.append(temp_row)
+```
+- Create a nested for loop that goes through the rows and columns.
+
+```
+for row in range(len(gpi_grid)):
+  for col in range (len(gpi_grid[row])):
+    # do something here by accesing gpi_grid[row][col]
+```
+
+If you are using a 2D list to store all the colors, you can change the location for Guam using:
+```
+name_of_your_2Dlist_of_colors[4][3] = "🏝️" 
 ```
