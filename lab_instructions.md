@@ -191,7 +191,7 @@ $$
 
 We get the following figure:
 
-![four_sub_integration](Figures/numerical_integration1.png)
+![four_sub_integration](https://github.com/MarkIrahCarey/UOG-CS201-SP26-LABS-CHAPTER5/blob/master/Figures/numerical_integration1.png?raw=true)
 
 Notice that its not a very good approximation as we are missing a lot of the area under the curve. To get a more accurate result, you would create more subdivisions!
 
@@ -215,7 +215,7 @@ $$
 
 Below is the figure for the following result:
 
-![ten_sub_integration](Figures/numerical_integration2.png)
+![ten_sub_integration](https://github.com/MarkIrahCarey/UOG-CS201-SP26-LABS-CHAPTER5/blob/master/Figures/numerical_integration2.png?raw=true)
 
 As you can see, a much more accurate result! Still quite rough...
 
@@ -223,13 +223,13 @@ Now that you got the basic idea, the theory is that if we keep increasing n, we 
 
 If we did $n = 100$:
 
-![hundred_sub_integration](Figures/numerical_integration3.png)
+![hundred_sub_integration](https://github.com/MarkIrahCarey/UOG-CS201-SP26-LABS-CHAPTER5/blob/master/Figures/numerical_integration3.png?raw=true)
 
 We almost get the entire area under the curve.
 
 Eventually, if we do a big number like $n = 10000$, it should emcompass the entire area under the curve:
 
-![ten_thousand_sub_integration](Figures/numerical_integration4.png)
+![ten_thousand_sub_integration](https://github.com/MarkIrahCarey/UOG-CS201-SP26-LABS-CHAPTER5/blob/master/Figures/numerical_integration4.png?raw=true)
 
 Note that this is an approximation such that: 
 
