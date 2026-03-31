@@ -191,7 +191,7 @@ $$
 
 We get the following figure:
 
-![four_sub_integration](https://github.com/MarkIrahCarey/UOG-CS201-SP26-LABS-CHAPTER5/blob/master/Figures/numerical_integration1.png?raw=true)
+![four_sub_integration](Figures/numerical_integration1.png)
 
 Notice that its not a very good approximation as we are missing a lot of the area under the curve. To get a more accurate result, you would create more subdivisions!
 
@@ -215,7 +215,7 @@ $$
 
 Below is the figure for the following result:
 
-![ten_sub_integration](https://github.com/MarkIrahCarey/UOG-CS201-SP26-LABS-CHAPTER5/blob/master/Figures/numerical_integration2.png?raw=true)
+![ten_sub_integration](Figures/numerical_integration2.png)
 
 As you can see, a much more accurate result! Still quite rough...
 
@@ -223,13 +223,13 @@ Now that you got the basic idea, the theory is that if we keep increasing n, we 
 
 If we did $n = 100$:
 
-![hundred_sub_integration](https://github.com/MarkIrahCarey/UOG-CS201-SP26-LABS-CHAPTER5/blob/master/Figures/numerical_integration3.png?raw=true)
+![hundred_sub_integration](Figures/numerical_integration3.png)
 
 We almost get the entire area under the curve.
 
 Eventually, if we do a big number like $n = 10000$, it should emcompass the entire area under the curve:
 
-![ten_thousand_sub_integration](https://github.com/MarkIrahCarey/UOG-CS201-SP26-LABS-CHAPTER5/blob/master/Figures/numerical_integration4.png?raw=true)
+![ten_thousand_sub_integration](Figures/numerical_integration4.png)
 
 Note that this is an approximation such that: 
 
@@ -345,7 +345,7 @@ Below is the ranges of GPI:
 | **81-90** | Very High | 🟣 Purple | Extremely favorable | Issue alert |
 | **91-100** | Extreme | ⚫ Black | Almost certain formation | Emergency notification |
 
-Given the following GPI 2D list, your job is to print the grid of colors for the GPI. Note that Guam is in column 4, row 4, so instead of the color, please put ⭐ instead.
+Given the following GPI 2D list, your job is to print the grid of colors for the GPI. Note that Guam is in column 4, row 4, so instead of the color, please put 🏝️ instead.
 
 ```
 gpi_grid = [
@@ -371,7 +371,7 @@ When mapping the colors, you should get the following:
   3.3N  🔵   🟢   🟢   🟢   🟢   🟢   🟢   🟢   🟢   🟢
   6.7N  🟢   🟢   🟢   🟢   🟡   🟡   🟡   🟡   🟢   🟢
    10N  🟢   🟢   🟡   🟡   🟠   🟠   🟠   🟡   🟡   🟢
- 13.3N  🟢   🟢   🟡   ⭐   🟤   🟤   🟤   🟤   🟠   🟡
+ 13.3N  🟢   🟢   🟡   🏝️   🟤   🟤   🟤   🟤   🟠   🟡
  16.7N  🟢   🟡   🟠   🟤   🔴   🔴   🔴   🔴   🟤   🟠
    20N  🟢   🟡   🟠   🟤   🔴   🟣   🟣   🟣   🔴   🟤
  23.3N  🟢   🟡   🟠   🟤   🔴   🔴   🔴   🔴   🟤   🟠
