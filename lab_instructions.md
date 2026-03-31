@@ -345,7 +345,7 @@ Below is the ranges of GPI:
 | **81-90** | Very High | 🟣 Purple | Extremely favorable | Issue alert |
 | **91-100** | Extreme | ⚫ Black | Almost certain formation | Emergency notification |
 
-Given the following GPI 2D list, your job is to print the grid of colors for the GPI. Note that Guam is in column 4, row 4, so instead of the color, please put G instead.
+Given the following GPI 2D list, your job is to print the grid of colors for the GPI. Note that Guam is in column 4, row 4, so instead of the color, please put ⭐ instead.
 
 ```
 gpi_grid = [
