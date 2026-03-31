@@ -80,7 +80,75 @@ It...uhm... looks great!
 
 Recommended Functions/Methods: You can put the rows into a 1D list of strings! Then use `.pop()` to remove the specific rows. Remember that once you pop, the size of the list changes, so think of ways to account for the changing size! Otherwise, you may remove the incorrect rows!
 
-## Lab 5c: Something, idk, placeholder
+## Lab 5c: [Part 1] RPG Level up and and use item manager
+
+RPG stands for Role-Playing Game. In an RPG, you take on the role of a character "class" (like a Warrior, Mage, or Rogue) and go on adventures. 
+
+Your character has stats (like strength, health, and level), gains experience points (EXP), encounter and defeat enemies, and levels up to become stronger. 
+
+You can also collect and use items (like apples or health potions) to heal yourself during battles. 
+
+The goal is to make strategic decisions like which stat to increase when you level up, or when to use a healing item during battle to defeat enemies and progress through the game.
+
+Throughout this lab, you will create a simple RPG by creating functions that handles the following:
+- A function that handles leveling when a player levels up
+- A function for using items in battle
+- A function for random encounters
+- A function that handles combat (simplified)
+
+For Part 1, you will do the first two, and for Part 2, you will do the last two. 
+
+The player will be the following dictionary. Please use this when testing your functions.
+```
+player = {"class" : "Warrior", 
+          "level" : 20,
+          "current_exp" : 1374,
+          "health" : 520,
+          "attributes" : [10, 4, 2, 9, 6, 7], # STR, INT, DEX, VIT, CON, CHR
+          "inventory" : [["apple", 10], ["health potion", 3], ["key", 1], ["stick", 1]]}
+```
+
+##### Function one, `level_manager(player)`
+The first function relates with the leveling system. Lets call it `level_manager(player)` where player is a dictionary.
+- Check if the player is close to leveling up by checking thier current exp. 
+- If their exp is over the the exp to next level:
+  - Subtract the current exp by the exp to next level 
+  - Level up the character, then prompt the user to ask what attribute they want to level up by one point!
+
+To keep track of levels and when they level up, please use this formula:
+EXP_TO_NEXT_LVL $= 100 × 1.3^{(level-1)}$
+
+Here is a sample:
+```
+Level up! You are now level 21!
+Current attributes: STR=10, INT=4, DEX=2, VIT=9, CON=6, CHR=7
+Which attribute would you like to increase? (STR/INT/DEX/VIT/CON/CHR): STR
+STR increased to 11!
+```
+
+Extra Credit (5pts): Handle cases when the player levels up more than once. 
+
+##### Function two, `use_item(player, item_name)`
+This function allows the player to use items from their inventory:
+
+To make things simple, lets only look at two items
+Item effects:
+- `"apple"`: Restore 50 health (cannot exceed max health)
+- `"health_potion"`: Restore 100 health + 10% of their max health (cannot exceed max health)
+
+During combat, if a player uses an item, update the count of said item accordingly and return a message describing what happened. 
+
+If there is zero of the item, tell the user they cannot use the item, they don't have any. 
+
+For example:
+```
+# Assuming max_health = 520 and current health is 400
+use_item(player, "apple")
+# Returns: "Used apple! Restored 50 HP. Current health: 450/520"
+
+use_item(player, "health_potion")  
+# Returns: "Used health potion! Restored 152 HP. Current health: 520/520"
+``` 
 
 ## Lab 5d: Calculus Numerical Intergration 
 
@@ -88,7 +156,7 @@ In Calculus I, the definite integral \(\int_a^b f(x) \, dx\) represents the **ar
 
 We use integration in real life for things like calculating total distance traveled from velocity, total work done, or accumulated rainfall.
 
-However, there are many functions are hard to integrate by hand. Hence we use **numerical methods** to approximate the area.
+However, there are many functions that are hard to integrate by hand. For example, something as "simple" as $\int_a^b e^{x^2} dx$ doesn't have elementary functions to integrate this. Hence we use **numerical methods** to approximate the area.
 
 In this lab, you will use the **Left Riemann Sum** (also called Left Rectangle Method). This is one of the simplest ways to approximate the area under a curve.
 
@@ -125,7 +193,7 @@ We get the following figure:
 
 ![four_sub_integration](Figures/numerical_integration1.png)
 
-Notice that its not a very good approximation. To get a more accurate result, you would create more subdivisions!
+Notice that its not a very good approximation as we are missing a lot of the area under the curve. To get a more accurate result, you would create more subdivisions!
 
 If we decided for $n = 10$:
 $$\Delta x = \dfrac{2 - 0}{10} = \dfrac{1}{5} = 0.2$$
@@ -167,9 +235,9 @@ Note that this is an approximation such that:
 
 $$ \sum_{i = 1}^n f(x_i^*) \cdot \Delta x_i \approx \int_a^b f(x) dx = F(b) - F(a)$$
 
-If we do the actual integral we have the following:
+If we do the actual integral, we assume to take an "infinite" summation. So our $n = \infty$. This becomes the following:
 
-$$ \int_0^2 x^2dx = \dfrac{x^3}{3} \Big|_0^2 = \dfrac{2^3}{3} - \dfrac{0^3}{3} = \dfrac{8}{3} \approx 2.667$$ 
+$$ \sum_{i = 1}^{\infty} f(x_i^*) \cdot \Delta x_i \approx \int_0^2 x^2dx = \dfrac{x^3}{3} \Big|_0^2 = \dfrac{2^3}{3} - \dfrac{0^3}{3} = \dfrac{8}{3} \approx 2.667$$ 
 
 With the main idea down, your task is to create a program called `numerical_integration.py` that does the following:
 
@@ -180,7 +248,7 @@ With the main idea down, your task is to create a program called `numerical_inte
 - Create a list of left endpoints: x\_left $= [a, a + \Delta x, a + 2\Delta x, ...]$
 - Create a list of y-values (the height) by evaluating `f(x)` at each endpoint
 - Create a list of areas of each rectangle by evaluating $\Delta x \cdot $ y_values$[i]$
-- Return the approximate area by summing all the rectangles
+- Return the approximate area by summing all the rectangles along with the lists of left endpoints, y_values, and areas of each rectangle.
 
 Example Output: 
 ```
@@ -258,171 +326,55 @@ if __name__ == "__main__":
     print("-"*50)
 ```
 
+## Lab 5e: Typhoon Tracker!
 
-## Lab 5e: RPG Battle Manager!
+You're a meteorologist working at the National Weather Service in Guam. Your job is to check if there's enough ocean energy for a typhoon to form near Guam. If there is, you need to warn the island!
 
-A player of your random rpg game has the following info about.
+GPI (Genesis Potential Index) is a score from 0-100 that tells you how likely a typhoon is to form:
 
-There is also a leveling system, we use this to keep track of when the player levels up and gets stronger! There are a lot of exp calculations but lets make it simple and use the following:
+Below is the ranges of GPI:
 
-EXP_TO_NEXT_LVL $= 100 × 1.3^{(level-1)}$
+| GPI Range | Risk Level | Color | Meaning | Action Required |
+|-----------|------------|-------|---------|-----------------|
+| **0-20** | Very Low | 🔵 Blue | No typhoon formation expected | None |
+| **21-40** | Low | 🟢 Green | Very unfavorable conditions | Monitor once daily |
+| **41-50** | Moderate-Low | 🟡 Yellow | Slightly favorable | Monitor every 12 hours |
+| **51-60** | Moderate | 🟠 Orange | Favorable conditions | Monitor every 6 hours |
+| **61-70** | Moderate-High | 🟤 Brown | Very favorable | Issue advisory |
+| **71-80** | High | 🔴 Red | Highly favorable | Issue warning |
+| **81-90** | Very High | 🟣 Purple | Extremely favorable | Issue alert |
+| **91-100** | Extreme | ⚫ Black | Almost certain formation | Emergency notification |
+
+Given the following GPI 2D list, your job is to print the grid of colors for the GPI. Note that Guam is in column 4, row 4, so instead of the color, please put G instead.
 
 ```
-player = {"class" : "Warrior", 
-          "level" : 20,
-          "current_exp" : 1374,
-          "health" : 520,
-          "attributes" : [10, 4, 2, 9, 6, 7], # STR, INT, DEX, VIT, CON, CHR
-          "inventory" : [["apple", 10], ["health potion", 3], ["key", 1], ["stick", 1]]}
+gpi_grid = [
+    [15, 18, 22, 25, 28, 30, 32, 28, 24, 20],  # 0°N
+    [18, 22, 28, 32, 35, 38, 40, 36, 30, 25],  # 3.3°N
+    [22, 28, 35, 40, 45, 48, 50, 45, 38, 32],  # 6.7°N
+    [28, 35, 42, 48, 55, 58, 60, 55, 45, 38],  # 10°N
+    [32, 40, 48, 55, 65, 68, 70, 65, 55, 45],  # 13.3°N (Guam row!)
+    [35, 45, 55, 62, 72, 78, 80, 75, 65, 55],  # 16.7°N
+    [38, 48, 58, 68, 78, 85, 88, 85, 75, 62],  # 20°N
+    [35, 45, 55, 65, 75, 80, 82, 80, 70, 58],  # 23.3°N
+    [30, 38, 48, 58, 68, 72, 75, 72, 62, 52],  # 26.7°N
+    [25, 32, 40, 48, 55, 58, 60, 58, 50, 42]   # 30°N
+]
+
+longitudes = [124, 131, 137, 144, 151, 157, 164, 171, 177, 180]  # °E
 ```
 
-Your job is to create 3 functions:
-
-##### Function one, `level_manager(player)`
-The first function relates with the leveling system. Lets call it `level_manager(player)` where player is a dictionary.
-- Check if the player is close to leveling up by checking thier current exp. 
-- If their exp is over the the exp to next level:
-  - Subtract the current exp by the exp to next level 
-  - Level up the character, then prompt the user to ask what attribute they want to level up by one point!
-
-For example:
+When mapping the colors, you should get the following:
 ```
-Level up! You are now level 21!
-Current attributes: STR=10, INT=4, DEX=2, VIT=9, CON=6, CHR=7
-Which attribute would you like to increase? (STR/INT/DEX/VIT/CON/CHR): STR
-STR increased to 11!
+       120E 127E 133E 140E 147E 153E 160E 167E 173E 180E
+    0N  🔵   🔵   🟢   🟢   🟢   🟢   🟢   🟢   🟢   🔵
+  3.3N  🔵   🟢   🟢   🟢   🟢   🟢   🟢   🟢   🟢   🟢
+  6.7N  🟢   🟢   🟢   🟢   🟡   🟡   🟡   🟡   🟢   🟢
+   10N  🟢   🟢   🟡   🟡   🟠   🟠   🟠   🟡   🟡   🟢
+ 13.3N  🟢   🟢   🟡   ⭐   🟤   🟤   🟤   🟤   🟠   🟡
+ 16.7N  🟢   🟡   🟠   🟤   🔴   🔴   🔴   🔴   🟤   🟠
+   20N  🟢   🟡   🟠   🟤   🔴   🟣   🟣   🟣   🔴   🟤
+ 23.3N  🟢   🟡   🟠   🟤   🔴   🔴   🔴   🔴   🟤   🟠
+ 26.7N  🟢   🟢   🟡   🟠   🟤   🔴   🔴   🔴   🟤   🟠
+   30N  🟢   🟢   🟢   🟡   🟠   🟠   🟠   🟠   🟡   🟡
 ```
-
-Extra Credit (5pts): Handle cases when the player levels up more than once. 
-
-##### Function two, `use_item(player, item_name)`
-This function allows the player to use items from their inventory:
-
-To make things simple, lets only look at two items
-Item effects:
-- `"apple"`: Restore 50 health (cannot exceed max health)
-- `"health_potion"`: Restore 100 health + 10% of their max health (cannot exceed max health)
-
-During combat, if a player uses an item, update the count of said item accordingly and return a message describing what happened. 
-
-If there is zero of the item, tell the user they cannot use the item, they don't have any. 
-
-For example:
-```
-# Assuming max_health = 520
-use_item(player, "apple")
-# Returns: "Used apple! Restored 50 HP. Current health: 520/520"
-
-use_item(player, "health_potion")  
-# Returns: "Used health potion! Restored 152 HP. Current health: 520/520"
-```
-
-##### Function three, `battle_manager(player, enemy)`
-This function relates with combat. It takes in two parameters where:
-  - player is a dictonary
-  - enemy is another dictonary
-
-When a battle occurs, here is the flow:
-  - Show both the player's and enemy's stats
-  - Alternates between player and enemy
-  - Continue until either the player or enemy reaches 0 health
-  - Player turn:
-    - Calculate the damage based on STR attribute 
-    - Player deals damage to enemy
-    - Show damage dealt and enemy's remaining health
-    - If enemy dies, break out of loop
-  - Enemy turn:
-    - Enemy deals damage to player
-    - Show damage taken and player's remaining health
-    - If player dies, break out of loop
-  - After combat
-    - If player wins: Award EXP based on the following calculation: `enemy['level'] * 50`
-    - Call `level_manager(player)` to check for level ups
-    - Return `True` if player won, `False` if player lost
-    - If player won, restore health equal to 20% of their max health
-  
-Please use the following dictionary for the enemy:
-```
-enemy = {
-    "name": "Goblin",
-    "level": 5,
-    "health": 80,
-    "attack": 15,
-    "exp_reward": 75
-}
-```
-
-Here is a sample run:
-```
-You have encountered a goblin!
-=== BATTLE START ===
-Warrior [Level 20] | HP: 520 | STR: 10
-vs
-Goblin [Level 5] | HP: 80 | ATK: 15
-====================
-
-Turn 1:
-You attack the Goblin for 20 damage!
-Goblin has 60 HP remaining.
----
-Goblin attacks you for 15 damage!
-You have 505 HP remaining.
----
-
-Turn 2:
-You attack the Goblin for 20 damage!
-Goblin has 40 HP remaining.
----
-Goblin attacks you for 15 damage!
-You have 490 HP remaining.
----
-
-Turn 3:
-You attack the Goblin for 20 damage!
-Goblin has 20 HP remaining.
----
-Goblin attacks you for 15 damage!
-You have 475 HP remaining.
----
-
-Turn 4: 
-You attack the Goblin for 20 damage!
-Goblin has 0 HP remaining!
-
-You defeated the Goblin! Gained 250 EXP!
-After battle, you restored 20% of your max health!
-Health: 475/520 -> 520/520
-```
-
-Please use the following template to create your functions:
-```
-def level_manager(player):
-    # TODO: Calculate EXP needed
-    exp_needed = 100 * (1.3 ** (player["level"] - 1))
-    
-    # TODO: Use while loop for multiple level ups
-    while player["current_exp"] >= exp_needed:
-        # TODO: Subtract exp and increase level
-        # TODO: Ask for attribute to increase
-        # TODO: Recalculate exp_needed for new level
-    pass
-
-def use_item(player, item_name):
-    # TODO: Find item in inventory
-    # TODO: Check quantity > 0
-    # TODO: Apply healing effect
-    # TODO: Update 
-    # TODO: Return message
-    pass
-
-def battle_manager(player, enemy):
-    # TODO: Display battle stats
-    # TODO: Combat loop (player attacks first)
-    # TODO: Player turn (damage = STR * random.uniform(1.5, 2))
-    # TODO: Enemy turn
-    # TODO: Victory or defeat logic
-    # TODO: Award EXP and restore health if win
-    pass
-```
-Note that dictionaries are mutable, so any changes within the function which reflect!
-
