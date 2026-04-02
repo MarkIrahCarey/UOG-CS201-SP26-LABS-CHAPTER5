@@ -1,6 +1,6 @@
 # Lab 5 Sample: Store Manager Cart System
 
-Suppose you are the manager of the UOG Convenience Store. Finals week is busy and students keep coming in for quick items. You want a simple system to show them random items from different categories and let them build their shopping cart.
+Suppose you are the manager of the UOG Book Store. Finals week is busy and students keep coming in for quick items. You want a simple system to show them random items from different categories and let them build their shopping cart.
 
 You will make a program called `store_manager.py` that will do the following:
 
