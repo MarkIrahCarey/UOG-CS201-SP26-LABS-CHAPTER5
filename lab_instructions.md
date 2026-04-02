@@ -78,7 +78,14 @@ What rows would you like removed?: 3,6,10
 It...uhm... looks great!
 ```
 
-Recommended Functions/Methods: You can put the rows into a 1D list of strings! Then use `.pop()` to remove the specific rows. Remember that once you pop, the size of the list changes, so think of ways to account for the changing size! Otherwise, you may remove the incorrect rows!
+Recommended Functions/Methods: 
+There are many ways to do this.
+
+Following from the example, you can have the user give you the list of rows. Then, you can put the rows of pyramid into a 1D list of strings! Then use `.pop(index)` to remove the specific rows based on the user input.
+
+You can also have the user remove as you go (meaning that you have the user remove 1 by 1 until they want to stop).
+
+But remember, once you pop, the size of the list changes, so think of ways to account for the changing size! Otherwise, you may remove the incorrect rows!
 
 ## Lab 5c: [Part 1] RPG Level up and and use item manager
 
