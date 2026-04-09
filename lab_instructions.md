@@ -40,7 +40,7 @@ Recommended functions/operations: `random.sample()`, `for key in mood_to_songs.k
 
 A followup from Lab3a, lets build upon this project.
 
-Update your existing `create_pyramid.py` program (from Lab 3a) so that it:
+Update your existing `create_pyramid.py` program (from Lab 3a) and call it `destroy_pyramid_py` so that it:
 
 - Still asks the user for the number of rows (height) of the pyramid.
 - Builds the full pyramid as a list of strings (each string = one row of the pyramid).

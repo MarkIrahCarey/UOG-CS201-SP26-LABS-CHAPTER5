@@ -14,7 +14,7 @@ category_to_items = {
 }
 
 best_buy = {"mobile" : [["Iphone", 399]],
-            "video games" : [["slay the spire 2", 24.99]]}
+            "video games" : [["Slay The Spire 2", 24.99]]}
 
 def store_manager(items):
     cart = {}
@@ -25,7 +25,7 @@ def store_manager(items):
         for key in items: # [snacks, drinks, food, school supplies, merch]
             print (key, end = " | ")
 
-        category = input("\nWhat category would you like? (Enter purchase to to buy what is in cart)")
+        category = input("\nWhat category would you like? (Enter purchase to to buy what is in cart): ")
         category = category.lower()
 
         # validate input
@@ -38,7 +38,7 @@ def store_manager(items):
             
             print (f"{round(sum, 2)}")
             break
-        
+
         elif category not in items.keys():
             while category not in items.keys():
                 category = input("INVALID, please enter the correct category: ")
@@ -76,6 +76,6 @@ def store_manager(items):
     
 
 
-store_manager(category_to_items)
+store_manager(best_buy)
 
 
